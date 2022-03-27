@@ -303,3 +303,34 @@ class DataFrame:
 
         
         raise TypeError('You should give a string or list to get something back!')
+
+
+        def __setitem__(self, key, value):
+        #You can create a single column here or overwrite one
+        if not isinstance(key,str):
+            raise NotImplementedError('Column keys can only be strings!')
+
+        if isinstance(value,nummy.ndarray):
+            if value.ndim != 1:
+                raise ValueError('The numpy array you enter as the value must be a one dimensional numpy array!')
+            if len(value) != len(self):
+                raise ValueError('The length of your value must be the same as the current dataframe!')
+
+        elif isinstance(value,DataFrame):
+            if value.shape[1] != 1:
+                raise ValueError('Your dataframe should be one column!')
+            if len(value) != len(self):
+                raise ValueError('The length of your value should be the same as the dataframe!')
+            value = next(iter(value._data.values()))
+
+        elif isinstance(value,(int,str,bool,float)):
+            value = nummy.repeat(value,len(self))
+        else:
+            raise TypeError('Your array should be a numpy array,dataframe,integer,string,boolean or float value')
+
+        #If the value is unicode,this line of code reassigns it to an object to make it more flexible
+        if value.dtype.kind == 'U':
+            value = value.astype(object)
+
+        #Now,let's assign our new value to the key
+        self._data[key] = value
