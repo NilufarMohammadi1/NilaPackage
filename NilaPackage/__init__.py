@@ -334,3 +334,15 @@ class DataFrame:
 
         #Now,let's assign our new value to the key
         self._data[key] = value
+
+
+    #Return unique values
+    def unique(self):
+        list_of_dataframes = []
+        for col,value in self._data.items():
+            new_data = {col:nummy.unique(value)}
+            list_of_dataframes.append(new_data)
+        if len(list_of_dataframes) == 1:
+            return list_of_dataframes[0]
+        else:
+            return list_of_dataframes
