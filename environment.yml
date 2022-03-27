@@ -1,0 +1,6 @@
+name: NilaPackage
+dependencies:
+- python=3.6
+- pandas
+- jupyter
+- pytest

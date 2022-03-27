@@ -1,0 +1,121 @@
+working directory -> staging area -> Git repository
+
+git status
+ 
+git log 
+ 
+git add
+
+git add .
+
+git add filex.txt
+
+git commit -m filex.txt
+
+ls -la
+
+ls 
+
+git ls-files -s
+
+---------
+4 git objects:
+
+git hash-object
+
+git mktree
+
+git commit
+
+annotated tag
+---------
+
+git config --global user.name
+git config --global user.mail
+
+---------
+
+git cat-file -p "sha1hash of file" -> content of file
+git cat-file -t "sha1hash of file" -> type of file being blob,tree,commit or annotated tag
+git cat-file -s "sha1hash of file" -> size of file
+
+---------
+
+File life Cycle in Git : Untracked ------> to track a  file and move it to staging area we use the git add command.When it reaches the staged point of its life cycle ,u can use git commit command to move it to "unmodified" point of its lifecycle.if u want to unstage the file u just moved to stagin area, u can use git rm --cached filex.txt.
+if the file u moved to unmodified step is not what u wanted to be in git repository, u can turn it bach to modified or un can go to the first step and  untrack it.
+
+
+---------
+
+you can use "git add" command to move files from working directory to staging area(index).
+after that u can use "git commit" command to commit files into Git repository and make unmodified files.Every commit has "Author name","Author email" and "Commit message".
+When files have been commited,u can jump betweem diferent versions of ur commit.
+For retrieving specifing versions of ur project from git repository u can use "git checkout".
+
+
+---------
+
+What is Branch?
+
+Branch is a text refrence to a specific commit.
+defaul branch is master.
+multiple branchs can exist in a repository.
+pointers of branches exist in .git/refs/Head.
+each branch tracks its own commits.
+Branch pointer moves automatically after every new commit.
+U can change branches using "Git checkout <name of the branch>" command.
+Every branch is basically a text wrapper around a specific commit.if u use command "cat" to see the content of ur current branch which is located in .git/refs/heads
+u will see that it simply contains a SHa1hash,which is the sha1hash of ur last commit.Branch is Just a pointer to ur commit!
+
+
+----------
+
+What is Head?
+
+Head is a pointer(refrence) to the currently checkedout branch or commit.
+We can only have one Head.
+Pointer is located in .git/Head file.
+Default pointer is ref:refs/heads/master.if u cat "ref:refs/heads/master" u will get the sha1hash of the last commit.
+U can change the position of ur HEAD pointing to a branch or a specific commit.For changing the position of ur HEAD u can use:
+1.git checkout <name of branch> -> if u want ur head to point to a branch
+2.git checkout <sha1hash of a commit file> -> if u want ur head to point to a commit
+
+
+normally head points to the branch.when head points to a specific commit instead of a specific branch,it will be called "detached head"!
+"git checkout" command doesn't do anything with branches,the master branch still points to the last commit.The "git checkout" command only changes the position of HEAD pointer.
+
+
+
+--------------
+branches commands:
+
+git branch -> lists all the branches
+
+git branch <name of branch> -> creates a new branch
+
+git checkout <name of branch> -> checksout a specific branch
+
+git branch -d <name of branch> -> deletes a specific branch
+
+git branch -m <old name> <new name> -> renames a branch
+
+git checkout -b <name of branch> -> creates a branch and checks it out
+---------------
+
+
+Git hosting servers:
+
+Github
+
+GitLab
+
+BitBucket
+
+
+
+---------------
+
+fork is actually copy of other repositories from other accounts
+
+
+in order to create a remote server in git use command "git remote add upstream link of forked git repo"
